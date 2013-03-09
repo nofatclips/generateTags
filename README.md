@@ -10,7 +10,7 @@ We’re building a site for web designers to show their portfolio. The user can 
 Since this is not a critical feature, we decided to implement it on the client side using JavaScript. We need a function that takes as input the submitted page and returns a list of the words from the page; obviously we are not interested in the HTML tags: the function must strip them out before extracting the words.
 *Optionally*:
 
-* the function may return the words ordered from the more frequent (the one that appears more times) to the less frequent;
+* the function may return the words ordered from the most frequent (the one that appears more times) to the least frequent;
 * the function may return how many times each word appears, so that different CSS styles can be applied to words according to their relevance;
 * the function may return only  words that are at least three characters long, or accept an additional `minimumLength` parameter. Smaller words are not interesting and should be discarded.
 
@@ -104,7 +104,7 @@ When you have a function that works satisfyingly, you might also want to impleme
 Let's review what the function should do:
 
 * In the easiest case: accept a single parameter, a string of text representing HTML code, strip all the HTML tags and return an array of words, ignoring ordering, case, interpunction, word limit, length limit, blacklists, thresholds and all other subtleties;
-* In the hardest case: accept a first parameter, a string of text representing HTML code, and many other optional arguments representing constraints on the output (max number of words to return, minimum length, forbidden words, threshold on frequency...) as described above. Strip all the HTML tags and return a list of words (ordered from the most frequent to the less frequent) along with their corresponding frequency.
+* In the hardest case: accept a first parameter, a string of text representing HTML code, and many other optional arguments representing constraints on the output (max number of words to return, minimum length, forbidden words, threshold on frequency...) as described above. Strip all the HTML tags and return a list of words (ordered from the most frequent to the least frequent) along with their corresponding frequency.
 * Feel free to solve a case that is harder, easier or intermediate between these two extremes.
 
 And that's all, folks.
