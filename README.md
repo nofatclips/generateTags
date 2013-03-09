@@ -101,7 +101,7 @@ When you have a function that works satisfyingly, you might also want to impleme
 Let's review what the function should do:
 
 * In the easiest case: accept a single parameter, a string of text representing HTML code, strip all the HTML tags and return an array of words ordered from the most frequent to the less frequent, ignoring case, interpunction, limits, blacklists, thresholds and all other subtleties
-* In the hardest case: accept a first parameter, a string of text representing HTML code, and many other optional arguments representing constraints on the output (max number of words to return, forbidden words, threshold on frequency) as described above. Strip all the HTML tags and return a list of words (ordered from the most frequent to the less frequent) along with their corresponding frequency.
+* In the hardest case: accept a first parameter, a string of text representing HTML code, and many other optional arguments representing constraints on the output (max number of words to return, minimum length, forbidden words, threshold on frequency...) as described above. Strip all the HTML tags and return a list of words (ordered from the most frequent to the less frequent) along with their corresponding frequency.
 * Feel free to solve a case that is harder, easier or intermediate between these two extremes.
 
 And that's all, folks.
