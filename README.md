@@ -12,7 +12,7 @@ Since this is not a critical feature, we decided to implement it on the client s
 
 * the function may return the words ordered from the more frequent (the one that appears more times) to the less frequent;
 * the function may return how many times each word appears, so that different CSS styles can be applied to words according to their relevance;
-* the function may return only  words that are at least three characters long, or accept an additional minimumLength parameter. Smaller words are not interesting and should be discarded.
+* the function may return only  words that are at least three characters long, or accept an additional `minimumLength` parameter. Smaller words are not interesting and should be discarded.
 
 ###Solution
 
