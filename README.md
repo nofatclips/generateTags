@@ -79,7 +79,7 @@ Here's a list of additional features that would make our function even more usef
 * we’d like the function to be able to cope with interpunction, so that “word”, “word,” and “¡word!” are seen as the same “word”;
 * we’d like the function to cope with different character case, so that “word”, “Word” and “WORD” are seen as the same “word”;
 * we’d like the function to retain the case when possible: if “Codecademy” is always written with the capital “C”, then this is how it should appear in the output;
-* we’d like the function to remove words that appear only one time or, in general, whose frequency is lower than a certain threshold--where the threshold is a constant one, or a value passed as a fourth argument to the function. Example:
+* we’d like the function to remove words that appear only once or, in general, whose frequency is lower than a certain threshold--where the threshold can either be a constant value, or a `minimumFrequency` argument passed to the function. Example:
 
 >   `> var html = "<p>one and two and three <i>one three</i> three</p>"`
 
@@ -87,7 +87,7 @@ Here's a list of additional features that would make our function even more usef
 
 >   `=> [ [three, 3], [one, 2] ]`
 
-* we'd like the function to be able to identify ISO Entities like &amp;nbsp; (non breaking space) and &amp;uuml; (ü) and convert them to the corresponding character;
+* we'd like the function to be able to identify ISO Entities like `&nbsp;` (non breaking space) and `&uuml;` (ü) and convert them to the corresponding character;
 * feel free to add more constraints for fun (use as less characters as possible, use a single chain of methods to return the result and so on...)
 * surprise me :D
 
