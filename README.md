@@ -88,6 +88,7 @@ Here's a list of additional features that would make our function even more usef
 
 >   `=> [ [three, 3], [one, 2] ]`
 
+* we'd like the function to be able to identify ISO Entities like &nbsp; (non breaking space) and &uuml; (ü) and convert them to the corresponding character;
 * feel free to add more constraints for fun (use as less characters as possible, use a single chain of methods to return the result and so on...)
 * surprise me :D
 
