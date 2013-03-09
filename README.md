@@ -93,9 +93,9 @@ Here's a list of additional features that would make our function even more usef
 
 ###Getting Started
 
-Here’s a little something to get started. There’s a big HTML string from Codecademy Labs source included to do your tests, but once you get your code working, test it with other web pages.
+Here’s a little something to get started. There are two big strings of HTML source code, one from Codecademy Labs and one from the Android website, source included to do your tests; but once you get your code working with them, test it with other web pages as well.
 
-http://labs.codecademy.com/kfP#:workspace
+[template.js](template.js)
 
 When you have a function that works satisfyingly, you might also want to implement a prototype of the user interface that analyzes the user web pages, calls the function to extract the tags, show them in the document and allow the user to select them and/or enter additional ones.
 
