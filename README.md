@@ -18,7 +18,7 @@ Additionally, and *optionally*:
 
 ###...and the solution
 
-We tought about different solutions and decided to design the function with one of the following interfaces:
+We thought about different solutions and decided to design the function with one of the following interfaces:
 
 `generateTags (theHTMLasText)`
 
