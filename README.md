@@ -12,7 +12,9 @@ Since this is not a critical feature, we decided to implement it on the client s
 
 * the function may return the words ordered from the most frequent (the one that appears more times) to the least frequent;
 * the function may return how many times each word appears, so that different CSS styles can be applied to words according to their relevance;
-* the function may return only  words that are at least three characters long, or accept an additional `minimumLength` parameter. Smaller words are not interesting and should be discarded.
+* the function may return only 20 words, or accept an additional `aNumericLimit` parameter. This is to avoid filling the screen with too many options for the user to choose from;
+* the function may remove words included in `aBlackListOfWords`, because we don't want to show them (curse words) or because they are not good as tags ("and", "in", "yes", "no"...);
+* the function may return only words that are at least three characters long, or accept an additional `minimumLength` parameter. Smaller words are not interesting and should be discarded.
 
 ###...and the solution
 
@@ -28,13 +30,18 @@ or:
 
 `generateTags (theHTMLasText, aNumericLimit, aBlackListOfWords)`
 
+or:
+
+`generateTags (theHTMLasText, aNumericLimit, aBlackListOfWords, minimumLength)`
+
 where:
 
 * `theHTMLasText` is a string that contains the HTML retrieved from the web page submitted by the user (the retrieval is done by another function, we don’t need to worry about that: our function receives just a string);
 * `aNumericLimit` is a positive number that defines a limit to how many words we want to return: that is, if the limit is `10`, the function should only return the first 10 words. This parameter is optional and defaults to `0`, that is “no limit”;
-* `aBlackListOfWords` is an array of words that we want to exclude from the returned object. For example, we don’t want to return words such as “a”, “with”, “from”, “to”... because they don’t convey any meaningful information. This parameter is optional and defaults to `[]`, that is “return everything”.
+* `aBlackListOfWords` is an array of words that we want to exclude from the returned object. For example, we don’t want to return words such as “a”, “with”, “from”, “to”... because they don’t convey any meaningful information. This parameter is optional and defaults to `[]`, that is “return everything”;
+* `minimumLength` is a positive number that defines how many characters a word needs in order to be included in the result. Smaller words will be removed.
 
-We can implement which version we prefer. Obviously the one with 3 parameters would be ideal.
+We can implement which version we prefer. Obviously the one with 3 or more parameters would be ideal.
 
 ###Usage examples
 
@@ -54,6 +61,10 @@ For the version returning only the words:
 
 >    `=> ["three", "one", "two"]`
 
+>    `> generateTags (html, 0, [and], 4)`
+
+>    `=> ["three"]`
+
 For the version returning the words and the corresponding frequencies:
 
 >   `> var html = "<p>one and two and three <i>one three</i> three</p>"`
@@ -66,9 +77,9 @@ For the version returning the words and the corresponding frequencies:
 
 >    `=> [ ["three", 3] ]`
 
->    `> generateTags (html, 0, [and])`
+>    `> generateTags (html, 0, [and], 4)`
 
->    `=> [ ["three",3], ["one", 2], ["two", 1] ]`
+>    `=> [ ["three",3] ]`
 
 **NOTE**: This is just an example of the possible output: feel free to use a different structure than a bi-dimensional array!
 
@@ -83,12 +94,13 @@ Here's a list of additional features that would make our function even more usef
 
 >   `> var html = "<p>one and two and three <i>one three</i> three</p>"`
 
->   `> generateTags (html, 0, [and], 2) // frequency >= 2`
+>   `> generateTags (html, 0, [and], 0, 2) // frequency >= 2`
 
 >   `=> [ [three, 3], [one, 2] ]`
 
 * we'd like the function to be able to identify ISO Entities like `&nbsp;` (non breaking space) and `&uuml;` (ü) and remove them (we don't want `nbsp` returned as a word) or better, convert them to the corresponding character;
-* feel free to add more constraints for fun (use as less characters as possible, use a single chain of methods to return the result and so on...)
+* feel free to add more constraints for fun (use as less characters as possible, use a single chain of methods to return the result and so on...);
+* the function kinda has too many arguments: we could make it more elegant by using an option object or turning the function itself into an object;
 * surprise me :D
 
 When you have a function that works satisfyingly, you might also want to implement a prototype of the user interface that analyzes the user web pages, calls the function to extract the tags, show them in the document and allow the user to select them and/or enter additional ones.
