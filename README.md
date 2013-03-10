@@ -8,13 +8,13 @@
 We’re building a site for web designers to show their portfolio. The user can enter the URL of her works and our application builds a nice gallery. However, we’re missing a function to file all these submissions. We’d like to attach tags to them. Moreover, we’d like to automatically generate suggestions for tags that the user can select and add to the submission without having to type them herself.
 
 Since this is not a critical feature, we decided to implement it on the client side using JavaScript. We need a function that takes as input the submitted page and returns a list of the words from the page; obviously we are not interested in the HTML tags: the function must strip them out before extracting the words.
-*Optionally*:
+Additionally, and *optionally*:
 
 * the function may return the words ordered from the most frequent (the one that appears more times) to the least frequent;
 * the function may return how many times each word appears, so that different CSS styles can be applied to words according to their relevance;
-* the function may return only 20 words, or accept an additional `aNumericLimit` parameter. This is to avoid filling the screen with too many options for the user to choose from;
+* the function may return only `20` words, or accept an additional `aNumericLimit` parameter. This is to avoid filling the screen with too many options for the user to choose from;
 * the function may remove words included in `aBlackListOfWords`, because we don't want to show them (curse words) or because they are not good as tags ("and", "in", "yes", "no"...);
-* the function may return only words that are at least three characters long, or accept an additional `minimumLength` parameter. Smaller words are not interesting and should be discarded.
+* the function may return only words that are at least `3` characters long, or accept an additional `minimumLength` parameter. Smaller words are not interesting and should be discarded.
 
 ###...and the solution
 
