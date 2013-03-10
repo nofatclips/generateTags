@@ -41,7 +41,7 @@ where:
 * `aBlackListOfWords` is an array of words that we want to exclude from the returned object. For example, we don’t want to return words such as “a”, “with”, “from”, “to”... because they don’t convey any meaningful information. This parameter is optional and defaults to `[]`, that is “return everything”;
 * `minimumLength` is a positive number that defines how many characters a word needs in order to be included in the result. Smaller words will be removed. This parameter is optional and defaults to `0`.
 
-We can implement which version we prefer. Obviously the one with 3 or more parameters would be ideal.
+We can implement which version we prefer. Obviously the ones with 3 or more parameters would be ideal.
 
 ###Usage examples
 
