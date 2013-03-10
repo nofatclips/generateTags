@@ -39,7 +39,7 @@ where:
 * `theHTMLasText` is a string that contains the HTML retrieved from the web page submitted by the user (the retrieval is done by another function, we don’t need to worry about that: our function receives just a string);
 * `aNumericLimit` is a positive number that defines a limit to how many words we want to return: that is, if the limit is `10`, the function should only return the first 10 words. This parameter is optional and defaults to `0`, that is “no limit”;
 * `aBlackListOfWords` is an array of words that we want to exclude from the returned object. For example, we don’t want to return words such as “a”, “with”, “from”, “to”... because they don’t convey any meaningful information. This parameter is optional and defaults to `[]`, that is “return everything”;
-* `minimumLength` is a positive number that defines how many characters a word needs in order to be included in the result. Smaller words will be removed.
+* `minimumLength` is a positive number that defines how many characters a word needs in order to be included in the result. Smaller words will be removed. This parameter is optional and defaults to `0`.
 
 We can implement which version we prefer. Obviously the one with 3 or more parameters would be ideal.
 
