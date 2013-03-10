@@ -5,7 +5,7 @@
 
 ###Scenario: the problem...
 
-We’re building a site for web designers to show their portfolio. The user can enter the URL of her works and our application build a nice gallery. However, we’re missing a function to file all these submissions. We’d like to attach tags to them. Moreover, we’d like to automatically generate suggestions for tags that the user can select and add to the submission without having to type them herself.
+We’re building a site for web designers to show their portfolio. The user can enter the URL of her works and our application builds a nice gallery. However, we’re missing a function to file all these submissions. We’d like to attach tags to them. Moreover, we’d like to automatically generate suggestions for tags that the user can select and add to the submission without having to type them herself.
 
 Since this is not a critical feature, we decided to implement it on the client side using JavaScript. We need a function that takes as input the submitted page and returns a list of the words from the page; obviously we are not interested in the HTML tags: the function must strip them out before extracting the words.
 *Optionally*:
