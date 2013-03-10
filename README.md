@@ -125,6 +125,6 @@ Let's review what the function should do:
 
 ###Your Solution
 
-Post your solution on Codecademy. If you want to submit it here, issue a pull request. Use your nickname as the file name, so that your code doesn't overwrite anyone's solution.
+Post your solution on Codecademy. If you want to submit it here, create a new file (this will automatically fork the repo) and issue a pull request when you're done. Use your nickname as the file/folder name, so that your code doesn't overwrite anyone's solution.
 
 And that's all, folks.
