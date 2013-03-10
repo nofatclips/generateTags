@@ -77,6 +77,10 @@ For the version returning the words and the corresponding frequencies:
 
 >    `=> [ ["three", 3] ]`
 
+>    `> generateTags (html, 0, [and])`
+
+>    `=> [ ["three",3], ["one", 2], ["two", 1] ]`
+
 >    `> generateTags (html, 0, [and], 4)`
 
 >    `=> [ ["three",3] ]`
