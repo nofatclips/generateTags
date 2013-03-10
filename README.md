@@ -18,7 +18,7 @@ Since this is not a critical feature, we decided to implement it on the client s
 
 ###...and the solution
 
-We tought about different solutions and decided to design the function with one the following interfaces:
+We tought about different solutions and decided to design the function with one of the following interfaces:
 
 `generateTags (theHTMLasText)`
 
