@@ -1,16 +1,16 @@
 # generateTags
 This is my approach to Dek Dekku's Tag Generator challenge (see [requirements][req]).
-As a true coffee addict, I avoid writing raw JavaScript whenever possible. This document is written in [Literate CoffeeScript][lit], a recent addition to CoffeeScript that allows writing core right inside a Markdown file. It's source-code and documentation in one, with a focus on the documentation.
+As a true coffee addict, I avoid writing raw JavaScript whenever possible. This document is written in [Literate CoffeeScript][lit], a recent addition to CoffeeScript that allows writing code right inside a Markdown file. It's source-code and documentation in one, with a focus on the documentation.
 
-The very file is automatically converted to valid, readable JavaScript in by the command-line tool `coffee`, provided in the [coffee-script][cfs] Node.js package. Find the output in [`generateTags.js`][jsf]
+This very file is automatically converted to valid, readable JavaScript in by the command-line tool `coffee`, provided in the [coffee-script][cfs] Node.js package. Find the output in [`generateTags.js`][jsf]
 
 [req]: https://github.com/nofatclips/generateTags#readme
 [lit]: http://coffeescript.org/#literate
 [cfs]: https://npmjs.org/package/coffee-script
-[jsf]:  ../generateTags.js
+[jsf]: ./generateTags.js
 [ife]: http://en.wikipedia.org/wiki/IIFE
 
-So let's begin, shall we? (The following block comment will appear on top of the JS file)
+So let’s begin, shall we? (The following block comment will appear on top of the JS file)
 
     ###
     generateTags.js
@@ -48,9 +48,9 @@ Because CoffeeScript wraps everything in an [IIFE][ife] `(function(){...}).call(
     
 So if we call the function as `generateTags(html, {limit:10, minLength:3})`, it'll fetch all the other options from `defaults` and output a list of the 10 most frequent words with 3 or more characters.
 
-We need some presets for the stopword list and the HTML tags to ignore (the latter lists are probably very incomplete, but who cares...).
+We need some presets for the stopword list (stolen from [here](http://www.ranks.nl/resources/stopwords.html)) and the HTML tags to ignore (this one I made up...)
 
-    # this list was stolen from http://www.ranks.nl/resources/stopwords.html
+    # common English stopwords
     stopwords = "a about above after again against all am an and any are aren't as at be because been before being below between both but by can't cannot could couldn't did didn't do does doesn't doing don't down during each few for from further had hadn't has hasn't have haven't having he he'd he'll he's her here here's hers herself him himself his how how's i i'd i'll i'm i've if in into is isn't it it's its itself let's me more most mustn't my myself no nor not of off on once only or other ought our ours  ourselves out over own same shan't she she'd she'll she's should shouldn't so some such than that that's the their theirs them themselves then there there's these they they'd they'll they're they've this those through to too under until up very was wasn't we we'd we'll we're we've were weren't what what's when when's where where's which while who who's whom why why's with won't would wouldn't you you'd you'll you're you've your yours yourself yourselves"
     
     html_tags = "button head script map style audio video canvas svg data"
@@ -61,8 +61,8 @@ We need some presets for the stopword list and the HTML tags to ignore (the latt
 
 This one will decode [HTML entities](http://www.w3.org/TR/html4/sgml/entities.html):
 
- - `&oslash;` becomes  `ø`
- - `&frac12;` becomes  `½`
+ - `&oslash;` becomes  ø
+ - `&frac12;` becomes  ½
  - `&#28450;`  becomes  漢
 
 and so forth. __WARNING__: this only works inside a DOM environment because it needs a `document`. It'll fail in standalone JS. Source: <http://stackoverflow.com/a/2808386/1030985>
@@ -95,7 +95,7 @@ and so forth. __WARNING__: this only works inside a DOM environment because it n
       for x of defaults
         opts[x] = if opts[x] is undefined then defaults[x] else opts[x]
       
-Now, let's get to the actual work, step by step.
+Now, let’s get to the dirty work, step by step.
 
 ### Cleanup 1: Eliminate HTML tags
 
@@ -103,11 +103,11 @@ Get rid of the tags that we want to ignore completely, such as `<script>...</scr
 
       if opts[ignoreNonTextTags]
         re = new RegExp "<(#{html_tags.replace(/\s/g,'|')}).+?</\\1>", "gi"
-        html = html.replace re, ""
+        html = html.replace re, " "
         
 Next, throw away __all other__ HTML tags, replacing them with spaces to avoid jamming together words from adjacent tags, e.g. `<li>foo</li><li>bar</li>`:
 
-      html = html.replace(/<.+?>/g, ' ')
+      html = html.replace(/<.+?>/g, " ")
       
 ### Cleanup 2: replace ISO entities
 
@@ -115,7 +115,12 @@ Next, throw away __all other__ HTML tags, replacing them with spaces to avoid ja
       
 ### Cleanup 3: kill punctuation
 
-There is no *one* correct way of doing this... 
+There are dozens of ways to do this, and not *one* of them is *the* correct way. This will in all likelihood destroy some things (email addresses, URLs? – too bad…), but it's probably still a good idea to leave the `ignorePunctuation` option on, otherwise `blah` and `blah,` will count as different words. Though I _could_ include yet anther option to preserve _certain types_ of punctuation (e.g. `!?…` at the end of words or `@` for Twitter usernames), for now I'm just going to brutally kill __every character__ in [this Unicode range](http://en.wikipedia.org/wiki/Template:Unicode_chart_General_Punctuation), plus some of the common ones that aren't in this range (`.,:;?!¿¡\/[](){}#@$%&§` or something like that), preserving just two special cases:
 
-      html = html.replace /[]/
+1. apostrophe between word characters (that _girl's father's Rock'n'Roll_)
+2. hyphen between word characters (_in-depth, hands-on, one-way_)
+
+The underscore will be spared.
+
+      html = html.replace /[]/ # to be continued...
       

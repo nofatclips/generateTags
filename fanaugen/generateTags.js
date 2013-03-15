@@ -68,9 +68,9 @@ This file is generated from its coffeescript source, see generateTags.coffee.md
     }
     if (opts[ignoreNonTextTags]) {
       re = new RegExp("<(" + (html_tags.replace(/\s/g, '|')) + ").+?</\\1>", "gi");
-      html = html.replace(re, "");
+      html = html.replace(re, " ");
     }
-    html = html.replace(/<.+?>/g, ' ');
+    html = html.replace(/<.+?>/g, " ");
     html = htmlDecode(html);
     return html = html.replace(/[]/);
   };
